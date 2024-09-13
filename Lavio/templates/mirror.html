@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스마트 거울</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .left-panel, .right-panel {
+            width: 250px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .left-panel {
+            align-items: flex-start;
+        }
+
+        .right-panel {
+            align-items: flex-end;
+            width: fit-content;
+        }
+
+        .weather, .clock, .news, .settings, .cleanliness {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .news h2, .settings h2, .cleanliness h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .settings button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #0066cc;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .settings-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+        }
+
+        .settings-menu button {
+            margin: 10px 0;
+        }
+
+        .settings-menu .back-button {
+            background-color: #333;
+        }
+
+        .cleanliness {
+            text-align: center;
+        }
+
+        .indicator {
+            margin: 10px 0;
+        }
+
+        .indicator span {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .indicator .status {
+            display: inline-block;
+            width: 50px;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .status.green { background-color: #28a745; }
+        .status.orange { background-color: #ffc107; }
+        .status.red { background-color: #dc3545; }
+
+        #image-display, #video-display {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        #image-display img, #video-display iframe {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .mirror-space {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="left-panel">
+        <div class="weather" style="background-color: rgba(0, 0, 0, 0.6);">
+            <h2>날씨</h2>
+            <div id="weather-info">200C</div>
+        </div>
+        <div class="clock" style="background-color: rgba(0, 0, 0, 0.6);">
+            <h2>현재 시간</h2>
+            <div id="current-time">20:20:20</div>
+        </div>
+        <div class="news" style="background-color: rgba(0, 0, 0, 0.6);">
+            <h2>최신 뉴스</h2>
+            <ul id="news-list">
+                <li>더미뉴스1</li>
+                <li>더미뉴스2</li>
+                <li>더미뉴스3</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mirror-space"></div>
+
+    <div class="right-panel">
+        <div class="cleanliness" style="background-color: rgba(0, 0, 0, 0.6);">
+            <h2>화장실 청결 상태</h2>
+            <div class="indicator">
+                <span>냄새 지수:</span> <span class="status green">좋음</span>
+            </div>
+            <div class="indicator">
+                <span>습도 지수:</span> <span class="status orange">보통</span>
+            </div>
+            <div class="indicator">
+                <span>환기 상태:</span> <span class="status orange">보통</span>
+            </div>
+        </div>
+
+        <div class="cleanliness" style="background-color: rgba(0, 0, 0, 0.6);">
+            <h2>현재 재생중</h2>
+                <iframe src="https://www.youtube.com/embed/dFczg3B8dZs?si=l-e4kJEv9dmQg8xz&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-display">
+        <img src="" alt="Selected Image">
+    </div>
+    <div id="video-display">
+        <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+</body>
+</html>

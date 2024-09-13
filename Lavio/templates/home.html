@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavio</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; 
+        }
+
+        .container {
+            text-align: center;
+            position: relative; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 120px; /* 로고를 위한 공간 */
+        }
+
+        .header-img {
+            position: absolute;
+            top: 0; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px; 
+        }
+
+        .question {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 50px; 
+            position: relative;
+            z-index: 1; 
+        }
+
+        .users {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+
+        .user {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .user img {
+            width: 200px;
+            height: 200px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            margin: 30px;
+            object-fit: cover;
+            transition: transform 0.3s, border 0.3s;
+        }
+
+        .user img:hover {
+            transform: scale(1.1);
+            border: 5px solid rgb(255, 212, 212);
+        }
+
+        .user-name {
+            font-size: 19px;
+            margin-top: 5px;
+        }
+        
+        .add-user {
+            font-size: 15px;
+            color: rgb(169, 169, 169);
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 50px; /* 더 큰 마진 추가 */
+        }
+
+        .add-user-container {
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/images/lavio_logo.png" alt="Header Image" class="header-img"> 
+        <div class="question">사용자를 선택해주세요 !</div>
+        <div class="users">
+            <div class="user">
+                <img src="/images/user1.png" alt="User 1" onclick="selectUser('최비오')">
+                <span class="user-name">최비오</span>
+            </div>
+            <div class="user">
+                <img src="/images/user2.png" alt="User 2" onclick="selectUser('김지엘')">
+                <span class="user-name">김지엘</span>
+            </div>
+            <div class="user">
+                <img src="/images/user3.png" alt="User 3" onclick="selectUser('이라경')">
+                <span class="user-name">이라경</span>
+            </div>
+            <div class="user">
+                <img src="/images/user4.png" alt="User 4" onclick="selectUser('박성일')">
+                <span class="user-name">박성일</span>
+            </div>
+        </div>
+        <div class="add-user-container">
+            <span class="add-user">사용자 추가...</span>
+        </div>
+    </div>
+    
+    <script>
+    function selectUser(username) {
+        fetch('/select_user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'username=' + encodeURIComponent(username)
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/personal';
+            }
+        });
+    }
+    </script>
+</body>
+</html>

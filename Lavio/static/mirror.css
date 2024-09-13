@@ -1,0 +1,85 @@
+.mirror_child_content_mirror_div {
+    display: flex;
+    margin: auto;
+    background-color: aliceblue;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.moodbox_1{
+    width: 95%;
+    height: 32%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    background-color: aquamarine;
+    padding-bottom: 10px;
+}
+
+.moodbox_2{
+    width: 95%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    background-color: aquamarine;
+    padding-bottom: 10px;
+}
+.moodbox_3{
+    width: 95%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    background-color: aquamarine;
+}
+
+
+
+.mood-1 {
+    width: 59%;
+    height: 100%;    
+    background-color: chartreuse;
+}
+.mood-2 {
+    width: 39%;
+    height: 100%;    
+    background-color: #ffcc00;
+}
+
+
+.mood-3, .mood-4, .mood-5, .mood-6 {
+    width: 24%;
+    height: 100%;    
+    background-color: blue;
+}
+
+
+.mood-7 {
+    width: 49%;
+    height: 100%;    
+    background-color: chartreuse;
+}
+.mood-8 {
+    width: 49%;
+    height: 100%;    
+    background-color: #ffcc00;
+}
+
+
+
+.mood_2{
+    overflow: hidden;    
+}
+.mood_2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* 이미지 비율을 유지하면서 div를 채움 */
+    object-position: center;  /* 이미지를 중앙에 위치시킴 */
+  }

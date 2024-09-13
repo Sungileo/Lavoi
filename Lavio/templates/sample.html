@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{{ username }}님의 화장실</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='effect.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='shower.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='light.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='mirror.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='baloon.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <button id="toggle-sidebar">
+        <div class="button_inner_bar"></div>
+        <div class="button_inner_bar"></div>
+        <div class="button_inner_bar"></div>
+        <div class="button_inner_bar"></div>
+        <div class="button_inner_bar"></div>
+    </button>
+    <div id="sidebar">        
+
+        <div class="component_1" id="mirror">
+            <div>
+                <img src="images/icon_mirror.png" class="icon">&nbsp;
+                <span>Mirror</span>    
+            </div>
+            <span class="arrow">&#62;</span>
+        </div>
+
+
+        <div class="hide" id="mirror_child">
+            <div class="mirror_child_content_mirror_div">
+                
+                <div class="moodbox_1">
+                    <div class="mood_2 mood-1 youtube-box">유튜브</div>
+                    <div class="mood_2 mood-2"><img src="images/mirror_img/weather.png" alt="Weather"></div>    
+                </div>
+                <div class="moodbox_2">
+                    <div class="mood_2 mood-3"><img src="images/mirror_img/insta.png" alt="Instagram"></div>
+                    <div class="mood_2 mood-4"><img src="images/mirror_img/kakao.png" alt="KakaoTalk"></div>
+                    <div class="mood_2 mood-5"><img src="images/mirror_img/melon.png" alt="Melon"></div>
+                    <div class="mood_2 mood-6"><img src="images/mirror_img/google.png" alt="Google"></div>    
+                </div>
+                <div class="moodbox_3">
+                    <div class="mood_2 mood-7"><img src="images/mirror_img/news.png" alt="News"></div>
+                    <div class="mood_2 mood-8"><img src="images/mirror_img/station.png" alt="Information"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="component_1" id="light">
+            <div>
+                <img src="images/icon_light.png" class="icon">&nbsp;
+                <span>Lightning</span>    
+            </div>
+            <span class="arrow">&#62;</span>
+        </div>
+        <div class="hide" id="light_child">
+            <div class="mirror_child_content">
+                <form class="container_2">
+                    <h1>Light</h1>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="100" value="30" class="slider" id="myRange">
+                        <div class="slider-value">30%</div>
+                        <div class="slider-labels">
+                            <span>0%</span>
+                            <span>25%</span>
+                            <span>50%</span>
+                            <span>75%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="mood_container">
+                <div class="mood">추천 분위기<br>(백엔드 작업)</div>
+                <div class="mood">추천 분위기<br>(백엔드 작업)</div>
+                <div class="mood">추천 분위기<br>(백엔드 작업)</div>
+            </div>
+        </div>
+        
+        <div class="component_1" id="vent">
+            <div>
+                <img src="images/icon_vent.png" class="icon">&nbsp;
+                <span>Air Solution</span>    
+            </div>
+            <span class="arrow">&#62;</span>
+        </div>
+        <div class="hide" id="vent_child">
+            <div class="2by2"></div>
+
+        </div>
+
+
+
+
+
+        <div class="component_1" id="shower">
+            <div>
+                <img src="images/icon_shower.png" class="icon">&nbsp;
+                <span>Shower</span>    
+            </div>
+            <span class="arrow">&#62;</span>
+        </div>
+        <div class="hide" id="shower_child">
+            <div class="container"></div>
+                <h1>Shower</h1>
+                <!-- ================샤워 html구현부==================== -->
+                <div class="shower-controls">
+                    <div class="shower-control-panel">
+                        <div class="shower-button" onclick="adjustShowerValue('temperature', 1)">+</div>
+                        <div id="shower-temperature" class="shower-value">45℃</div>
+                        <div class="shower-label">설정수온</div>
+                        <div class="shower-button" onclick="adjustShowerValue('temperature', -1)">-</div>
+                    </div>
+                    <div class="shower-control-panel">
+                        <div class="shower-button" onclick="adjustShowerValue('pressure', 1)">+</div>
+                        <div id="shower-pressure" class="shower-value">5/10</div>
+                        <div class="shower-label">설정수압</div>
+                        <div class="shower-button" onclick="adjustShowerValue('pressure', -1)">-</div>
+                    </div>
+                    <div class="shower-control-panel">
+                        <img src="/images/person.png" onclick="location.href='/'"> <!-- 여기 이미지만 변경! -->
+                        <div class="shower-label" style="color: #2196f3;font-weight: bold;">사용자 맞춤형 모드</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="shower-label">샤워 필터 오염</div>
+                    <div class="shower-progress-bar">
+                        <div class="shower-progress shower-blue" style="width: 28%;">28%</div>
+                    </div>
+                    <div style="color: #2196f3; font-size: 12px; font-weight: bold;">아주 좋은 상태입니다!</div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <div class="shower-label">수도꼭지 오염</div>
+                    <div class="shower-progress-bar">
+                        <div class="shower-progress shower-red" style="width: 89%;">89%</div>
+                    </div>
+                    <div style="color: #f44336; font-size: 12px; font-weight: bold;font-weight: bold;">점검필요! 이물질 의심!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 100px; height: 100px; transform: translateY(90vh) translateX(1.5vw);">
+        <img class="laviologo" src="images/lavio_logo_bottom.png" alt="">
+    </div>
+
+
+
+
+    <div id="main-content">
+        <div class="user_greet">
+            <div>
+                <span><strong>{{ username }}</strong> 님&nbsp;
+                    <br>좋은 하루 보내세요!🍀
+                </span>
+            </div>
+            <img src={{ p_path }} alt="" onclick="location.href='/'">
+            
+        </div>
+
+        <div class="image-container">
+            <img src={{ img_path }} alt="화장실 이미지" id="light-image">
+            <div id="preview_container">
+                <span id="close_preview">&times;</span>
+                <iframe id="preview_iframe" src="" frameborder="0"></iframe>
+            </div>
+            <div class="wind-effect" id="wind-effect">
+                <!-- <img src="images/바람효과.gif" alt="바람 효과" id="wind-gif"> -->
+            </div>
+        </div>
+
+        <div class="user_greet_bottom">
+            <!-- <img class="laviologo" src="images/lavio_logo_bottom.png" alt=""> -->
+            <div></div>
+            <button id="preview_button">aa</button>
+            <!-- <img class="mic" src="images/mic.png"> -->
+        </div>
+
+
+    </div>
+
+    <div id="divForTest"></div>
+
+    <div id="preview_container">
+        <iframe src="" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        window.addEventListener('message', function(event) {
+            document.getElementById('divForTest').innerHTML = `<p>${event.data.message}</p><p>${event.data.senti} : ${event.data.score}</p>`;
+        });
+
+        // 거울 미리보기
+        $(document).on('click', '#preview_button', function(e) {
+            e.preventDefault(); // 기본 동작 방지
+            const url = '/voice';
+            $('#preview_iframe').attr('src', url);
+            $('#preview_container').css('display', 'block');
+            $('#preview_container').css('width', '320px');
+            $('#preview_container').css('height', '500px');
+        });
+
+        // 닫기 버튼 클릭 이벤트
+        $('#close_preview').on('click', function() {
+            $('#preview_container').css('display', 'none');
+        });
+
+        // 미리보기 영역 외 클릭 시 닫기
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest("#preview_iframe").length && 
+                !$(event.target).is("#preview_button") &&
+                !$(event.target).is("#close_preview")) {
+                $('#preview_container').css('display', 'none');
+            }
+        });
+
+
+        $('.component_1').on('click', function() {
+            var childId = $(this).attr('id') + '_child';
+            var $child = $('#' + childId);
+            
+            if ($child.hasClass('show')) {
+                $child.removeClass('show').addClass('hide');
+            } else {
+                $('.show').removeClass('show').addClass('hide');
+                $child.removeClass('hide').addClass('show');
+            }
+        });
+
+        // 사이드바 토글 버튼 이벤트
+        $('#toggle-sidebar').on('click', function() {
+            $('#sidebar').toggleClass('hidden');
+            $('#main-content').toggleClass('full');
+        });
+        
+        
+        const slider = document.getElementById("myRange");
+        const output = document.querySelector(".slider-value");
+        output.innerHTML = slider.value + "%";
+    
+        slider.oninput = function() {
+            output.innerHTML = this.value + "%";
+            output.style.left = this.value + "%";
+        }
+
+
+        brightnessSlider.addEventListener('input', updateImageStyle);
+        hueSlider.addEventListener('input', updateImageStyle);
+
+        window.addEventListener('load', initializeSliders);
+
+        
+
+        // 환풍기 슬라이더 이벤트
+        const windSpeedSlider = document.getElementById('wind-speed-slider');
+        const windGif = document.getElementById('wind-gif');
+
+        // GIF 애니메이션을 표시하는 함수
+        function updateWindEffect() {
+            const speed = windSpeedSlider.value;
+            const gifSize = 50 + (speed * 20); // 바람 강도에 따라 크기 조정 (최소 50px에서 최대 250px)
+
+            // 바람 강도가 0일 경우 GIF 표시하지 않음
+            if (speed > 0) {
+                windGif.style.width = `${gifSize}px`;
+                windGif.style.height = `${gifSize}px`;
+            } else {
+                windGif.style.width = '0';
+                windGif.style.height = '0';
+            }
+        }
+
+        // 바람 강도 슬라이더 이벤트
+        windSpeedSlider.addEventListener('input', updateWindEffect);
+
+        // 페이지 로드 시 바람 효과 초기화
+        window.addEventListener('load', updateWindEffect);
+
+        // 샤워기 온도,수압 설정하는 함수
+        function adjustShowerValue(type, change) {
+            const element = document.getElementById('shower-' + type);
+            if (type === 'temperature') {
+                let temp = parseInt(element.textContent);
+                temp = Math.max(20, Math.min(50, temp + change));
+                element.textContent = temp + '℃';
+            } else if (type === 'pressure') {
+                let [current, max] = element.textContent.split('/').map(Number);
+                current = Math.max(1, Math.min(10, current + change));
+                element.textContent = current + '/' + max;
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
